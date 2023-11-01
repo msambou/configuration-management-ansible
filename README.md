@@ -66,7 +66,10 @@ Paste the following into the file:
     server1 ansible_host=<vm1-ip-address> ansible_user=<your-server-username>
     server2 ansible_host=<vm2-ip-address> ansible_user=<your-server-username>
   
-  
+### Ping your servers
+
+        ansible -i inventory.ini servers -m ping
+
 ### Create playbook file
 
       nano update-python.yaml
@@ -109,3 +112,6 @@ Copy and paste the following code into the editor:
           tags:
             - display_python_version
 
+## Running your playbook
+
+        ansible-playbook -i inventory.ini update-python.yaml
