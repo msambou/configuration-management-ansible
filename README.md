@@ -1,5 +1,8 @@
 # Configuration Management using Ansible
 
+## Learning Objective
+By the end of the lab, students will gain hands-on experience in using Ansible to manage dependencies for a fleet of servers.
+
 ## Create 3 VMS
 - Master VM
 - vm1
