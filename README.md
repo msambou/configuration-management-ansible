@@ -9,6 +9,7 @@
 - Ubuntu Server 22.04
 - Standard_B1ms (1 vcpu, 2 Gib RAM)
 - Use password authentication
+- Enable Port 80
 
 ## Commands to run after first login
 
@@ -46,13 +47,8 @@ Repeat the above steps for vm2.
 
     sudo apt install ansible
 
-## Check the version of Python running on vms 1 and 2
 
-    python3 --version
-
-The output of the above command should be Python 3.10.12
-
-## Use Ansible to update the version of Python to 3.11.x
+## Use Ansible to install Apache
 
 ### Create an Inventory File
 
@@ -72,44 +68,17 @@ Paste the following into the file:
 
 ### Create playbook file
 
-      nano update-python.yaml
+      nano install-apache.yaml
 
 Copy and paste the following code into the editor:
 
-    ---
-    - name: Ensure Python 3.11 is installed on Ubuntu
-      hosts: servers
-      become: yes
-      gather_facts: yes  # To gather facts about the remote system
-    
-      tasks:
-        - name: Update apt cache (for Ubuntu)
-          apt:
-            update_cache: yes
-          tags:
-            - update_cache
-    
-        - name: Install Python 3.11 (for Ubuntu)
-          apt:
-            name: python3.11
-            state: present
-          tags:
-            - install_python
-    
-        - name: Check Python version
-          command: python3.11 --version
-          register: python_version
-          changed_when: false
-          failed_when: false
-          tags:
-            - check_python_version
-    
-        - name: Display Python version
-          debug:
-            var: python_version.stdout_lines
-          tags:
-            - display_python_version
+        ---
+        - hosts: servers
+          become: true
+          tasks:
+            - name: install apache2
+              apt: name=apache2 update_cache=yes state=latest
 
 ## Running your playbook
 
-        ansible-playbook -i inventory.ini update-python.yaml
+        ansible-playbook -i inventory.ini install-apache.yaml
