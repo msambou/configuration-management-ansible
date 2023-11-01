@@ -69,7 +69,7 @@ Paste the following into the file:
   
 ### Create playbook file
 
-  nano update-python.yaml
+      nano update-python.yaml
 
 Copy and paste the following code into the editor:
 
