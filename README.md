@@ -62,9 +62,9 @@ The output of the above command should be Python 3.10.12
 
 Paste the following into the file:
 
-  [servers]
-  server1 ansible_host=<vm1-ip-address> ansible_user=<your-server-username>
-  server2 ansible_host=<vm2-ip-address> ansible_user=<your-server-username>
+    [servers]
+    server1 ansible_host=<vm1-ip-address> ansible_user=<your-server-username>
+    server2 ansible_host=<vm2-ip-address> ansible_user=<your-server-username>
   
   
 ### Create playbook file
