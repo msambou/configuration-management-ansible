@@ -86,7 +86,6 @@ Copy and paste the following code into the editor:
         - name: Update apt cache (for Ubuntu)
           apt:
             update_cache: yes
-          when: "'Ubuntu' in ansible_facts['ansible_distribution']"
           tags:
             - update_cache
     
@@ -94,7 +93,6 @@ Copy and paste the following code into the editor:
           apt:
             name: python3.11
             state: present
-          when: "'Ubuntu' in ansible_facts['ansible_distribution']"
           tags:
             - install_python
     
