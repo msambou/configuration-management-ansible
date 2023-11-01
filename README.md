@@ -73,39 +73,39 @@ Paste the following into the file:
 
 Copy and paste the following code into the editor:
 
-  ---
-  - name: Ensure Python 3.11 is installed on Ubuntu
-    hosts: servers
-    become: yes
-    gather_facts: yes  # To gather facts about the remote system
-  
-    tasks:
-      - name: Update apt cache (for Ubuntu)
-        apt:
-          update_cache: yes
-        when: "'Ubuntu' in ansible_facts['ansible_distribution']"
-        tags:
-          - update_cache
-  
-      - name: Install Python 3.11 (for Ubuntu)
-        apt:
-          name: python3.11
-          state: present
-        when: "'Ubuntu' in ansible_facts['ansible_distribution']"
-        tags:
-          - install_python
-  
-      - name: Check Python version
-        command: python3.11 --version
-        register: python_version
-        changed_when: false
-        failed_when: false
-        tags:
-          - check_python_version
-  
-      - name: Display Python version
-        debug:
-          var: python_version.stdout_lines
-        tags:
-          - display_python_version
+    ---
+    - name: Ensure Python 3.11 is installed on Ubuntu
+      hosts: servers
+      become: yes
+      gather_facts: yes  # To gather facts about the remote system
+    
+      tasks:
+        - name: Update apt cache (for Ubuntu)
+          apt:
+            update_cache: yes
+          when: "'Ubuntu' in ansible_facts['ansible_distribution']"
+          tags:
+            - update_cache
+    
+        - name: Install Python 3.11 (for Ubuntu)
+          apt:
+            name: python3.11
+            state: present
+          when: "'Ubuntu' in ansible_facts['ansible_distribution']"
+          tags:
+            - install_python
+    
+        - name: Check Python version
+          command: python3.11 --version
+          register: python_version
+          changed_when: false
+          failed_when: false
+          tags:
+            - check_python_version
+    
+        - name: Display Python version
+          debug:
+            var: python_version.stdout_lines
+          tags:
+            - display_python_version
 
