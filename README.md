@@ -85,3 +85,8 @@ Copy and paste the following code into the editor:
 ## Running your playbook
 
         ansible-playbook -i inventory.ini install-apache.yaml
+
+## Verify Apache is Installed
+1. Copy vm1's IP Address from the Azure Portal.
+2. Paste it into your browser's address bar.
+3. You should see the Apache Welcome Page.
